@@ -47,8 +47,20 @@ print("Files and directories in '", log_path, "' :")
 
 # Let's check to see if each log file is within the within the last 6 months
 for file_name in dir_list:
-    print(file_name + f" Exists: {exists(file_name)}, length: {len(file_name)} ")
-    pass  # needed since I commented out the above line.
+    dot_sql = file_name.endswith(".sql")
+    if dot_sql:
+        print(f"Good to process... {file_name}")
+    else:
+        print(f"Need to remove this file: {file_name}!!!!")
+
+
+    # print(file_name + f" Exists: {exists(file_name)}, length: {len(file_name)} ")
+    if file_name > cut_filename:
+        print(f"{file_name} is less than {cut_filename} (Delete this file).")
+    else:
+        print(f"{file_name} is less than {cut_filename}.")
+     
+    # pass  # needed since I commented out the above line.
 
 
 # Delete a file
