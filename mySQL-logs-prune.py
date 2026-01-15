@@ -26,8 +26,8 @@ print(f"Today is: {base_date}")
 print(base_date)
 print(type(base_date))
 
-# Lets go back 6 months
-cut_date = base_date - timedelta(days=180)
+# Lets go back 6 months plus one year
+cut_date = base_date - timedelta(days=365)
 print(cut_date)
 
 # Let's build the filename to compare against
@@ -47,7 +47,7 @@ print("Files and directories in '", log_path, "' :")
 
 # Let's check to see if each log file is within the within the last 6 months
 for file_name in dir_list:
-    # print(file_name + f" Exists: {exists(file_name)}, length: {len(file_name)} ")
+    print(file_name + f" Exists: {exists(file_name)}, length: {len(file_name)} ")
     pass  # needed since I commented out the above line.
 
 
