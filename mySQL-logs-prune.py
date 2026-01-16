@@ -49,19 +49,35 @@ print("Files and directories in '", log_path, "' :")
 for file_name in dir_list:
     dot_sql = file_name.endswith(".sql")
     if dot_sql:
-        print(f"Good to process... {file_name}")
+        # This file qualifies so let's process it.
+        #print(f"Good to process... {file_name}")
+        # Extract the run date from the filename
+        file_date = file_name[9:19]
+        # print(file_date)
+        # Split it into month day year
+        temp_date = file_date.rsplit('-')
+        # print(f" {temp_date} which is a {type(temp_date)}")
+        
+        # In case date doesn't parse correctly, skip
+        if len(temp_date) < 3:
+            continue
+ 
+        # Turn that value into a data objext for comparison to cut_date
+        run_date = date(int(temp_date[0]), int(temp_date[1]), int(temp_date[2]))
+        # print(f"{run_date} which is a {type(run_date)}")
+
+        # Compare against cut date
+        if cut_date < run_date:
+            print(f"Run date {run_date} is within Cut date {cut_date}.")
+        else:
+            print(f"File ({file_name}) is older than cut_date {cut_date}, it should be archived or deleted.")
+
     else:
         print(f"Need to remove this file: {file_name}!!!!")
-
+ 
 
     # print(file_name + f" Exists: {exists(file_name)}, length: {len(file_name)} ")
-    if file_name > cut_filename:
-        print(f"{file_name} is less than {cut_filename} (Delete this file).")
-    else:
-        print(f"{file_name} is less than {cut_filename}.")
-     
-    # pass  # needed since I commented out the above line.
-
+    
 
 # Delete a file
 file = 'file1.txt'
