@@ -22,13 +22,13 @@ current_path()
 date_format = "%Y-%m-%d"
 base_date = date.today()
 
-print(f"Today is: {base_date}")
-print(base_date)
-print(type(base_date))
+print(f"Today is: {base_date}.")
+# print(base_date)
+# print(type(base_date))
 
 # Lets go back 6 months plus one year
-cut_date = base_date - timedelta(days=365)
-print(cut_date)
+cut_date = base_date - timedelta(days=545)
+print(f"Cut date is: {cut_date}.")
 
 # Let's build the filename to compare against
 
@@ -73,7 +73,10 @@ for file_name in dir_list:
             print(f"File ({file_name}) is older than cut_date {cut_date}, it should be archived or deleted.")
 
     else:
-        print(f"Need to remove this file: {file_name}!!!!")
+        if file_name[0] == ".":
+            continue
+        else:
+            print(f"Need to remove this file: {file_name}!!!!")
  
 
     # print(file_name + f" Exists: {exists(file_name)}, length: {len(file_name)} ")
